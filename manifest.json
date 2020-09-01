@@ -1,0 +1,42 @@
+{
+  "name": "Implanter",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Inject JS into the page.",
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
+  "browser_action": {
+    "default_title": "Implanter",
+    "default_icon": "images/icon.png",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "js": [
+        "injected/content_script.js"
+      ],
+      "matches": [
+        "http://localhost:3000/"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    "injected/process.js"
+  ],
+  "permissions": [
+    "tabs",
+    "storage",
+    "contextMenus",
+    "http://localhost:3000/"
+  ]
+}
