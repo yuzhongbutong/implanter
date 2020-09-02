@@ -1,9 +1,8 @@
-var background = chrome.extension.getBackgroundPage();
-
 $(function () {
-  var isChecked = background.isChecked;
-  $('#switchID').attr('checked', isChecked);
+  chrome.storage.sync.get('isEnabled', function({isEnabled}) {
+    $('#switchID').attr('checked', isEnabled);
+  });
   $('#switchID').click(function () {
-    background.isChecked = this.checked;
+    chrome.storage.sync.set({isEnabled: this.checked});
   });
 });
